@@ -2,9 +2,9 @@ import { Schema, model } from 'mongoose'
 import {
   Guardian,
   LocalGuardian,
-  Student,
+  TStudent,
   UserName,
-} from './student/student.interface'
+} from './student.interface'
 
 const userNameSchema = new Schema<UserName>({
   firstName: { type: String, required: true },
@@ -27,15 +27,29 @@ const localGuardianSchema = new Schema<LocalGuardian>({
   contactNo: { type: String, required: true },
 })
 
-const studentSchema = new Schema<Student>({
-  id: { type: String },
+const studentSchema = new Schema<TStudent>({
+  id: {
+    type: String,
+    required: [true, 'ID is required'],
+    unique: true,
+  },
+
+  user: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
+  },
+
   name: userNameSchema,
-  gender: ['female', 'male'],
+  gender: { type: String, enum: ['female', 'male'] },
   dateOfBirth: { type: 'String' },
   email: { type: String, required: true },
   contactNo: { type: String, required: true },
   emergencyContactNo: { type: String, required: true },
-  bloodGroup: ['A+', 'A-', 'AB+', 'AB-', 'B+', 'B-', 'O+', 'O-'],
+  bloodGroup: {
+    type: String,
+    enum: ['A+', 'A-', 'AB+', 'AB-', 'B+', 'B-', 'O+', 'O-'],
+  },
   presentAddress: { type: String, required: true },
   permanentAddress: { type: String, required: true },
 
@@ -44,7 +58,7 @@ const studentSchema = new Schema<Student>({
   localGuardian: localGuardianSchema,
 
   profileImg: { type: String },
-  isActive: ['active', 'blocked'],
+  isDeleted: Boolean,
 })
 
-export const StudentModel = model<Student>('Student', studentSchema)
+export const StudentModel = model<TStudent>('Student', studentSchema)

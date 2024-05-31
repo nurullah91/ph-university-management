@@ -1,5 +1,8 @@
-import {Schema, model} from 'mongose'
+import {Schema, model} from 'mongoose'
 import TUser from './user.interface';
+import bcrypt from "bcrypt";
+import config from '../../config';
+
 
 const userSchema = new Schema<TUser>({
 id: {
@@ -16,7 +19,7 @@ needsPasswordChange:{
 },
 role:{
     type: String,
-    enum: ["admin","faculty", "admin"],
+    enum: ["admin","faculty", "student"],
 },
 status:{
     type: String,
@@ -32,4 +35,23 @@ isDeleted:{
     timestamps: true
 });
 
-export const User = model<TUser>("Users", userSchema)
+
+userSchema.pre('save', async function ( next ) {
+    const user = this;
+
+    // hashing password before save into db
+    user.password = await bcrypt.hash(
+        user.password,
+        Number(config.bcrypt_salt_rounds)
+    );
+
+    next();
+})
+
+userSchema.post('save', function ( doc, next){
+    // set empty string after saving hash password
+    doc.password = '';
+
+    next();
+})
+export const UserModel = model<TUser>("Users", userSchema)
