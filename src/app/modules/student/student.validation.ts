@@ -41,11 +41,9 @@ const createStudentValidationSchema = z.object({
   body: z.object({
     password: z.string().max(20),
     student: z.object({
-      user: z.string().nonempty({ message: 'User reference is required' }),
-
       name: userNameValidationSchema,
       gender: z.enum(['female', 'male']).optional(),
-      dateOfBirth: z.date().optional(),
+      dateOfBirth: z.string().optional(),
       email: z.string().email({ message: 'Invalid email address' }),
       contactNo: z.string().nonempty({ message: 'Contact number is required' }),
       emergencyContactNo: z
