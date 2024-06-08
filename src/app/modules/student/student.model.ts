@@ -5,6 +5,7 @@ import {
   TStudent,
   UserName,
 } from './student.interface'
+import { boolean } from 'zod'
 
 const userNameSchema = new Schema<UserName>({
   firstName: { type: String, required: true },
@@ -69,7 +70,10 @@ const studentSchema = new Schema<TStudent>({
     type: Schema.Types.ObjectId,
     ref: 'AcademicSemester',
   },
-  isDeleted: Boolean,
+  isDeleted: {
+    type: Boolean,
+    default: false
+  },
 })
 
 export const Student = model<TStudent>('Student', studentSchema)

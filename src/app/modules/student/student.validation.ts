@@ -68,6 +68,30 @@ const createStudentValidationSchema = z.object({
   }),
 })
 
+const updateStudentValidationSchema = z.object({
+  body: z.object({
+    student: z.object({
+      name: userNameValidationSchema.partial(),
+      gender: z.enum(['female', 'male']).optional(),
+      dateOfBirth: z.string().optional(),
+      email: z.string().email({ message: 'Invalid email address' }).optional(),
+      contactNo: z.string().optional(),
+      emergencyContactNo: z.string().optional(),
+      bloodGroup: z
+        .enum(['A+', 'A-', 'AB+', 'AB-', 'B+', 'B-', 'O+', 'O-'])
+        .optional(),
+      presentAddress: z.string().optional(),
+      permanentAddress: z.string().optional(),
+      guardian: guardianValidationSchema.partial(),
+      localGuardian: localGuardianValidationSchema.partial(),
+      admissionSemester: z.string().optional(),
+      profileImg: z.string().optional(),
+    }).partial(),
+  }),
+})
+
+
 export const studentValidations = {
   createStudentValidationSchema,
+  updateStudentValidationSchema
 }
