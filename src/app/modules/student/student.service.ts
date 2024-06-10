@@ -2,10 +2,10 @@ import mongoose from 'mongoose'
 import { Student } from './student.model'
 import AppError from '../../Error/AppError'
 import httpStatus from 'http-status'
-import { UserModel } from '../user/user.model'
+import { User } from '../user/user.model'
 import { TStudent } from './student.interface'
 import QueryBuilder from '../../builder/QueryBuilder'
-import { studentSearchableFields } from './student.constart'
+import { studentSearchableFields } from './student.constant'
 
 const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   // const queryObj = { ...query }
@@ -68,25 +68,29 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
 
   // return fieldQuery;
 
-  const studentQuery = new QueryBuilder(Student.find().populate('admissionSemester')
-    .populate({
-      path: 'academicDepartment',
-      populate: {
-        path: 'academicFaculty',
-      },
-    }), query)
+  const studentQuery = new QueryBuilder(
+    Student.find()
+      .populate('admissionSemester')
+      .populate({
+        path: 'academicDepartment',
+        populate: {
+          path: 'academicFaculty',
+        },
+      }),
+    query,
+  )
     .search(studentSearchableFields)
     .filter()
     .sort()
     .paginate()
-    .fields();
+    .fields()
 
-    const result = await studentQuery.modelQuery;
-    return result;
+  const result = await studentQuery.modelQuery
+  return result
 }
 
 const getSingleStudentFromDB = async (id: string) => {
-  const result = await Student.findOne({ id })
+  const result = await Student.findById(id)
     .populate('admissionSemester')
     .populate({
       path: 'academicDepartment',
@@ -123,7 +127,7 @@ const updateStudentIntoDB = async (id: string, payload: Partial<TStudent>) => {
     }
   }
 
-  const result = Student.findOneAndUpdate({ id }, modifiedUpdateData, {
+  const result = Student.findByIdAndUpdate(id, modifiedUpdateData, {
     new: true,
     runValidators: true,
   })
@@ -136,8 +140,8 @@ const deleteStudentFromDB = async (id: string) => {
 
   try {
     session.startTransaction()
-    const deleteStudent = await Student.findOneAndUpdate(
-      { id },
+    const deleteStudent = await Student.findByIdAndUpdate(
+      id,
       { isDeleted: true },
       { new: true, session },
     )
@@ -146,7 +150,7 @@ const deleteStudentFromDB = async (id: string) => {
       throw new AppError(httpStatus.BAD_REQUEST, 'failed to delete student')
     }
 
-    const deleteUser = await UserModel.findOneAndUpdate(
+    const deleteUser = await User.findOneAndUpdate(
       { id },
       { isDeleted: true },
       { new: true, session },
