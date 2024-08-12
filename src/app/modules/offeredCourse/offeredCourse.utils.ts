@@ -1,0 +1,23 @@
+import { TSchedule } from './offeredCourse.interface'
+
+export const hasTimeConflict = (
+  assignedSchedule: TSchedule[],
+  newSchedule: TSchedule,
+) => {
+  for (const schedule of assignedSchedule) {
+    const existingStartTime = new Date(`2002-01-01T${schedule.startTime}`)
+    const existingEndTime = new Date(`2002-01-01T${schedule.endTime}`)
+    const newStartTime = new Date(`2002-01-01T${newSchedule.startTime}`)
+    const newEndTime = new Date(`2002-01-01T${newSchedule.endTime}`)
+
+    //  Time conflict
+    //  10:30 - 12:30
+    //  11:30 - 01:30
+
+    if (newStartTime < existingEndTime && newEndTime > existingStartTime) {
+      return true
+    }
+  }
+
+  return false
+}

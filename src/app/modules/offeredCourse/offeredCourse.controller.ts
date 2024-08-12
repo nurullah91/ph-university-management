@@ -5,17 +5,19 @@ import httpStatus from 'http-status'
 import { OfferedCourseServices } from './offeredCourse.service'
 
 const createOfferedCourse = catchAsync(async (req: Request, res: Response) => {
-  const result = OfferedCourseServices.createOfferedCourseIntoDB(req.body)
+  const result = await OfferedCourseServices.createOfferedCourseIntoDB(req.body)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Offered course is successfully',
+    message: 'Offered course is created successfully',
     data: result,
   })
 })
 const getAllOfferedCourse = catchAsync(async (req: Request, res: Response) => {
-  const result = OfferedCourseServices.getAllOfferedCoursesFromDB(req.query)
+  const result = await OfferedCourseServices.getAllOfferedCoursesFromDB(
+    req.query,
+  )
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -27,7 +29,7 @@ const getAllOfferedCourse = catchAsync(async (req: Request, res: Response) => {
 const getSingleOfferedCourse = catchAsync(
   async (req: Request, res: Response) => {
     const { id } = req.params
-    const result = OfferedCourseServices.getSingleOfferedCourseFromDB(id)
+    const result = await OfferedCourseServices.getSingleOfferedCourseFromDB(id)
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
@@ -39,7 +41,10 @@ const getSingleOfferedCourse = catchAsync(
 )
 const updateOfferedCourse = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params
-  const result = OfferedCourseServices.updateOfferedCoursesIntoDB(id, req.body)
+  const result = await OfferedCourseServices.updateOfferedCoursesIntoDB(
+    id,
+    req.body,
+  )
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -50,7 +55,7 @@ const updateOfferedCourse = catchAsync(async (req: Request, res: Response) => {
 })
 const deleteOfferedCourse = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params
-  const result = OfferedCourseServices.deleteOfferedCoursesFromDB(id)
+  const result = await OfferedCourseServices.deleteOfferedCoursesFromDB(id)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
