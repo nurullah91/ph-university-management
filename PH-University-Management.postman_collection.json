@@ -1,0 +1,1202 @@
+{
+	"info": {
+		"_postman_id": "fa1a1164-45fb-4972-a87e-b3ea46d49527",
+		"name": "PH-University-Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27394234"
+	},
+	"item": [
+		{
+			"name": "Academic semester",
+			"item": [
+				{
+					"name": "create-academic-semester",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Summer\",\r\n    \"year\": \"2025\",\r\n    \"code\": \"02\",\r\n    \"startMonth\": \"May\",\r\n    \"endMonth\": \"August\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/academic-semesters/create-academic-semester",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"academic-semesters",
+								"create-academic-semester"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Academic semester",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/academic-semesters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"academic-semesters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a academic semester",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/academic-semesters/665e0711a375a21a4ea95639",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"academic-semesters",
+								"665e0711a375a21a4ea95639"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a semester",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Autumn\",\r\n    \"year\": \"2025\",\r\n    \"code\": \"01\",\r\n    \"startMonth\": \"January\",\r\n    \"endMonth\": \"May\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/academic-semesters/665e0711a375a21a4ea95639",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"academic-semesters",
+								"665e0711a375a21a4ea95639"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Get all students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"students"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "email",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "email",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single Student",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/students/123457",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"students",
+								"123457"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"we are 123\",\r\n    \"student\": {\r\n        \"name\": {\r\n            \"firstName\": \"Moynul\",\r\n            \"middleName\": \"\",\r\n            \"lastName\": \"Islam\"\r\n        },\r\n        \"gender\": \"male\",\r\n        \"dateOfBirth\": \"2000-01-15\",\r\n        \"email\": \"main.moynul@example.com\",\r\n        \"contactNo\": \"123-456-7890\",\r\n        \"emergencyContactNo\": \"098-765-4321\",\r\n        \"bloodGroup\": \"O+\",\r\n        \"presentAddress\": \"123 Main St, Cityville, State, 12345\",\r\n        \"permanentAddress\": \"456 Elm St, Townsville, State, 67890\",\r\n        \"guardian\": {\r\n            \"fatherName\": \"Abdus salam\",\r\n            \"fatherOccupation\": \"Businessman\",\r\n            \"fatherContactNo\": \"111-222-3333\",\r\n            \"motherName\": \"Janina\",\r\n            \"motherOccupation\": \"Housewife\",\r\n            \"motherContactNo\": \"444-555-6666\"\r\n        },\r\n        \"localGuardian\": {\r\n            \"name\": \"Uncle Ben\",\r\n            \"occupation\": \"Businessman\",\r\n            \"contactNo\": \"777-888-9999\"\r\n        },\r\n        \"profileImg\": \"http://example.com/profile/johndoe.jpg\",\r\n        \"academicDepartment\": \"66605ff3e0e0e2fbed35f4f2\",\r\n        \"admissionSemester\": \"665e0763a375a21a4ea9563e\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users/create-student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"create-student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PH-Local-url}}/students/2025020003",
+							"host": [
+								"{{PH-Local-url}}"
+							],
+							"path": [
+								"students",
+								"2025020003"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update student",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"student\": {\r\n        \"dateOfBirth\": \"06-07-2002\"\r\n    }\r\n       \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PH-Local-url}}/students/2025020003",
+							"host": [
+								"{{PH-Local-url}}"
+							],
+							"path": [
+								"students",
+								"2025020003"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Academic Faculty",
+			"item": [
+				{
+					"name": "Create Academic Faculty",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Faculty of Business Administration\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PH-Local-url}}/academic-faculties/create-academic-faculty",
+							"host": [
+								"{{PH-Local-url}}"
+							],
+							"path": [
+								"academic-faculties",
+								"create-academic-faculty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All academic faculties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ph-local-url}}/academic-faculties",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"academic-faculties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single Academic Faculties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PH-Local-url}}/academic-faculties/665f853ecdaa92d210db5ec6",
+							"host": [
+								"{{PH-Local-url}}"
+							],
+							"path": [
+								"academic-faculties",
+								"665f853ecdaa92d210db5ec6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update academic Faculty",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Faculty of Engineering\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PH-Local-url}}/academic-faculties/665f853ecdaa92d210db5ec6",
+							"host": [
+								"{{PH-Local-url}}"
+							],
+							"path": [
+								"academic-faculties",
+								"665f853ecdaa92d210db5ec6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Academic Department",
+			"item": [
+				{
+					"name": "Create Academic Department",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Computer science and engineering\",\r\n    \"academicFaculty\": \"665f853ecdaa92d210db5ec6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PH-Local-url}}/academic-departments/create-academic-department",
+							"host": [
+								"{{PH-Local-url}}"
+							],
+							"path": [
+								"academic-departments",
+								"create-academic-department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all academic department",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ph-local-url}}/academic-departments",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"academic-departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single academic department",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PH-Local-url}}/academic-departments/66605ff3e0e0e2fbed35f4f2",
+							"host": [
+								"{{PH-Local-url}}"
+							],
+							"path": [
+								"academic-departments",
+								"66605ff3e0e0e2fbed35f4f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update academic department",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Finance and Bangking\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PH-Local-url}}/academic-departments/66605ff3e0e0e2fbed35f4f7",
+							"host": [
+								"{{PH-Local-url}}"
+							],
+							"path": [
+								"academic-departments",
+								"66605ff3e0e0e2fbed35f4f7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SemesterRegistration",
+			"item": [
+				{
+					"name": "Create Semester Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"academicSemester\": \"665e0711a375a21a4ea95639\",\r\n    \"status\": \"UPCOMING\",\r\n    \"startDate\": \"2025-05-10T04:00:01Z\",\r\n    \"endDate\": \"2025-08-24T17:59:59Z\",\r\n    \"minCredit\": 7,\r\n    \"maxCredit\": 16\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/semester-registrations/create-semester-registration",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"semester-registrations",
+								"create-semester-registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Semester Registration",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"UPCOMING\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/semester-registrations/66b3b22f5eaee44ca3238325",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"semester-registrations",
+								"66b3b22f5eaee44ca3238325"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Semester Registration",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"ONGOING\",\r\n    \"minCredit\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/semester-registrations/657872df6e1c4f8c4c2e7c0a",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"semester-registrations",
+								"657872df6e1c4f8c4c2e7c0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Semester Registration",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"academicSemester\": \"60a8c088c69a1a001c5d9a1a\",\r\n    \"status\": \"ONGOING\",\r\n    \"startDate\": \"2023-01-01T00:00:00Z\",\r\n    \"endDate\": \"2023-05-31T23:59:59Z\",\r\n    \"minCredit\": 6,\r\n    \"maxCredit\": 18\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/semester-registrations",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"semester-registrations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Semester Registration",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"academicSemester\": \"60a8c088c69a1a001c5d9a1a\",\r\n    \"status\": \"ONGOING\",\r\n    \"startDate\": \"2023-01-01T00:00:00Z\",\r\n    \"endDate\": \"2023-05-31T23:59:59Z\",\r\n    \"minCredit\": 6,\r\n    \"maxCredit\": 18\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/semester-registrations/66b32200886618b823f933bf",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"semester-registrations",
+								"66b32200886618b823f933bf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offered Courses",
+			"item": [
+				{
+					"name": "Create Offered Course",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"semesterRegistration\":\"66b3b22f5eaee44ca3238325\",\r\n  \"academicFaculty\":\"665f85a3cdaa92d210db5ecd\",\r\n  \"academicDepartment\": \"66605ff3e0e0e2fbed35f4f2\",\r\n  \"course\": \"66b7f9e2417681b9f90decf9\",\r\n  \"faculty\": \"66b7f7a0417681b9f90decef\",\r\n  \"section\": 1,\r\n  \"maxCapacity\": 30,\r\n  \"days\": [\"Mon\",\"Wed\"],\r\n  \"startTime\": \"10:00\",\r\n  \"endTime\": \"12:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/offered-courses/create-offered-course",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"offered-courses",
+								"create-offered-course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Offered Course",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"faculty\":\"656dce37133c4a8a53eb5f09\",\r\n   \"maxCapacity\":100,\r\n   \"days\": [\"Sun\", \"Tue\"],\r\n   \"startTime\": \"11:30\",\r\n   \"endTime\":\"12:30\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/offered-courses/65799a5a559fc6be799ec596",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"offered-courses",
+								"65799a5a559fc6be799ec596"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Offered Course",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/offered-courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"offered-courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Offered Courses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{studentToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/offered-courses/my-offered-courses?page=1&limit=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"offered-courses",
+								"my-offered-courses"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Single Offered Course",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/academic-semesters/65646ac154dfafc1a9ce2806jjjjj",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"academic-semesters",
+								"65646ac154dfafc1a9ce2806jjjjj"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create Student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{superADminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/F:/level2/images/Student/student-1.png",
+									"disabled": true
+								},
+								{
+									"key": "data",
+									"value": "{\n    \"password\": \"student123\",\n    \"student\": {\n        \"name\": {\n            \"firstName\": \"I am \",\n            \"middleName\": \"Student\",\n            \"lastName\": \"Number 1\"\n        },\n        \"gender\": \"male\",\n        \"dateOfBirth\": \"1990-01-01\",\n        \"email\": \"student2@gmail.com\",\n        \"contactNo\": \"1235678\",\n        \"emergencyContactNo\": \"987-654-3210\",\n        \"bloogGroup\": \"A+\",\n        \"presentAddress\": \"123 Main St, Cityville\",\n        \"permanentAddress\": \"456 Oak St, Townsville\",\n        \"guardian\": {\n            \"fatherName\": \"James Doe\",\n            \"fatherOccupation\": \"Engineer\",\n            \"fatherContactNo\": \"111-222-3333\",\n            \"motherName\": \"Mary Doe\",\n            \"motherOccupation\": \"Teacher\",\n            \"motherContactNo\": \"444-555-6666\"\n        },\n        \"localGuardian\": {\n            \"name\": \"Alice Johnson\",\n            \"occupation\": \"Doctor\",\n            \"contactNo\": \"777-888-9999\",\n            \"address\": \"789 Pine St, Villageton\"\n        },\n        \"admissionSemester\": \"65b0104110b74fcbd7a25d92\",\n        \"academicDepartment\": \"65b00fb010b74fcbd7a25d8e\"\n    }\n}\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users/create-student/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"create-student",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Faculty",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMDAxIiwicm9sZSI6InN1cGVyQWRtaW4iLCJpYXQiOjE3MjA0MzQ2MjYsImV4cCI6MTcyMTI5ODYyNn0.afyv5bwv_WbOZUAyRJ8drLWQAYyAwbHV3hY13eEFL4Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"faculty123\",\r\n    \"faculty\": {\r\n        \"designation\":\"Lecturer\",\r\n        \"name\": {\r\n            \"firstName\": \"Faculty2\",\r\n            \"middleName\": \"Nurullah\",\r\n            \"lastName\": \"Bhuiyan\"\r\n        },\r\n        \"gender\":\"male\",\r\n        \"email\":\"facultynurullah2@gmail.com\",\r\n        \"dateOfBirth\": \"2002-01-01\",\r\n        \"contactNo\": \"12333333\",\r\n        \"emergencyContactNo\": \"1233333\",\r\n        \"bloodGroup\": \"A+\",\r\n        \"presentAddress\": \"123 Main St, Cityville\",\r\n        \"permanentAddress\": \"456 Oak St, Townsville\",\r\n        \"academicDepartment\":\"66606053e0e0e2fbed35f4f4\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/users/create-faculty",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"users",
+								"create-faculty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMDAxIiwicm9sZSI6InN1cGVyQWRtaW4iLCJpYXQiOjE3MjA0NTcyNjcsImV4cCI6MTcyMTMyMTI2N30.HIu3QqBMsTpFy3arUAu5UcmoRwSZqy57N8NE06SHwu0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/saminravi99/Downloads/414402027_1367032297316085_3242041099875548910_n.png",
+									"disabled": true
+								},
+								{
+									"key": "data",
+									"value": "{\n    \"password\": \"admin123\",\n    \"admin\": {\n        \"designation\": \"Admin\",\n        \"name\": {\n            \"firstName\": \"Md\",\n            \"middleName\": \"Nurullah\",\n            \"lastName\": \"Bhuiyan\"\n        },\n        \"gender\": \"male\",\n        \"dateOfBirth\": \"2002-07-06\",\n        \"email\": \"nurullahbuiyan91@gmail.com\",\n        \"contactNo\": \"12356789\",\n        \"emergencyContactNo\": \"12356789\",\n        \"bloogGroup\": \"O+\",\n        \"presentAddress\": \"123 Main St, Cityville\",\n        \"permanentAddress\": \"456 Oak St, Townsville\"\n    }\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/users/create-admin",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"users",
+								"create-admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ME",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJBLTAwMDEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDI5MTE1MzQsImV4cCI6MTcwMjk5NzkzNH0.rFGShUR_KYplvQRq8DGTzYPLq8PiZbjiZflrmYALy_g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ph-local-url}}/users/me",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change User Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"blocked\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/users/change-status/658056522d7914bff94e67cf",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"users",
+								"change-status",
+								"658056522d7914bff94e67cf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Course",
+			"item": [
+				{
+					"name": "Create Course",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Micro Emonomics\",\r\n    \"prefix\": \"ME\",\r\n    \"code\": 108,\r\n    \"credits\": 4,\r\n    \"isDeleted\": false,\r\n    \"preRequisiteCourses\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/courses/create-course",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"courses",
+								"create-course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Courses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ph-local-url}}/courses",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "basic",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Course",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ph-local-url}}/courses/657707078cf5db4b6e5e6450",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"courses",
+								"657707078cf5db4b6e5e6450"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ph-local-url}}/courses/656f138faac14eb8a7a73b79",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"courses",
+								"656f138faac14eb8a7a73b79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Course",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"preRequisiteCourses\": [\r\n        {\r\n            \"course\":\"657707078cf5db4b6e5e6450\",\r\n            \"isDeleted\":false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/courses/657707328cf5db4b6e5e6452",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"courses",
+								"657707328cf5db4b6e5e6452"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Faculties",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"faculties\": [\"65b08432cb87974826d0b7a7\",\"65b0844ccb87974826d0b7af\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/courses/65b6001fd6ffdd9bfc058329/assign-faculties",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"courses",
+								"65b6001fd6ffdd9bfc058329",
+								"assign-faculties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course Faculties",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"faculties\": [\"656f4d1dd76e9d4aa33ae1f8\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/courses/65b5fed5d6ffdd9bfc05831a/get-faculties",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"courses",
+								"65b5fed5d6ffdd9bfc05831a",
+								"get-faculties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Faculties",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"faculties\": [\"656f4d0dd76e9d4aa33ae1f1\",\"656dce37133c4a8a53eb5f09\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ph-local-url}}/courses/656f2ab70909e55eba6b2fc1/remove-faculties",
+							"host": [
+								"{{ph-local-url}}"
+							],
+							"path": [
+								"courses",
+								"656f2ab70909e55eba6b2fc1",
+								"remove-faculties"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
